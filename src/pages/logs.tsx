@@ -6,13 +6,13 @@ import { useTranslation } from "react-i18next";
 import { atomLogData } from "../services/states";
 import BasePage from "../components/base/base-page";
 import LogItem from "../components/log/log-item";
-
+import { useConfig } from "./config";
 const LogPage = () => {
   const { t } = useTranslation();
   const [logData, setLogData] = useRecoilState(atomLogData);
 
   const [logState, setLogState] = useState("all");
-  const [filterText, setFilterText] = useState("");
+  const [filterText, setFilterText] = useConfig("logs");
 
   const filterLogs = useMemo(() => {
     return logData.filter((data) => {

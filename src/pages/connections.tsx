@@ -7,13 +7,14 @@ import { ApiType } from "../services/types";
 import { closeAllConnections, getInformation } from "../services/api";
 import BasePage from "../components/base/base-page";
 import ConnectionItem from "../components/connection/connection-item";
+import { useConfig } from "./config";
 
 const initConn = { uploadTotal: 0, downloadTotal: 0, connections: [] };
 
 const ConnectionsPage = () => {
   const { t } = useTranslation();
 
-  const [filterText, setFilterText] = useState("");
+  const [filterText, setFilterText] = useConfig("connections");
   const [connData, setConnData] = useState<ApiType.Connections>(initConn);
 
   const filterConn = useMemo(() => {
